@@ -1,0 +1,35 @@
+name: test
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run App
+        id: a
+        run: |
+          # Execute the steps to run your app
+
+      - name: Run Tests
+        id: b
+        run: |
+          exit 1
+        
+      - name: dubug
+        if: always()
+        run: |
+          if ${{ steps.b.outcome == 'failure' }}
+          then
+            echo "failure"
+          fi
+      
+      - name: dubug
+        if: always()
+        run: |
+          if ${{ steps.a.outcome == 'success' }}
+          then
+            echo "success"
+          fi
